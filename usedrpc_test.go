@@ -23,7 +23,7 @@ import (
 )
 
 func TestRPCClient(t *testing.T) {
-	c := NewUseRPC("http://127.0.0.1:8545")
+	c := NewUseRPC("http://47.100.195.101:8545")
 	coinbase, err := c.UseCoinbase()
 	fmt.Println("The block number:", err, coinbase)
 }
@@ -49,5 +49,21 @@ func TestRPCMainTransaction(t *testing.T) {
 		Data:  "",
 	}
 	flag, err := c.UseSendSubTransaction(tx, "0x6da8c30181d22e69fb17fa498f5cba5b09ecd572", "latest")
+	fmt.Println("The tx hash:", err, flag)
+}
+
+func TestRPCTransaction(t *testing.T) {
+	c := NewUseRPC("http://127.0.0.1:8545")
+	accounts, _ := c.UseAccounts()
+	tx := T {
+		From: accounts[0],
+		To:   "0xfffffffffffffffffffffffffffffffff0000001",
+		Value: big.NewInt(0),
+		Data:  "",
+	}
+	flag, err := c.UseSendTransaction(tx)
+	fmt.Println("The tx hash:", err, flag)
+
+	flag, err = c.UseSendTransaction(tx)
 	fmt.Println("The tx hash:", err, flag)
 }
