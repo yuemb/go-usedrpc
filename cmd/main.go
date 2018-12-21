@@ -4,6 +4,7 @@ import (
 	"math/big"
 	"fmt"
 	"github.com/usechain/go-usedrpc"
+	"time"
 )
 
 func main() {
@@ -18,6 +19,7 @@ func main() {
 	for {
 		flag, err := c.UseSendTransaction(tx)
 		fmt.Println("The tx hash:", err, flag)
+		time.Sleep(50*time.Millisecond)
 	}
 }
 
