@@ -8,7 +8,7 @@ import (
 func main() {
 	c := usedrpc.NewUseRPC("http://127.0.0.1:8545")
 	blockNumber, _ := c.UseBlockNumber()
-	blockStart, _ := c.UseGetBlockByNumber(blockNumber - 30, false)
+	blockStart, _ := c.UseGetBlockByNumber(blockNumber - 100, false)
 	blockNow, _ := c.UseGetBlockByNumber(blockNumber, false)
 	timeslot := blockNow.Timestamp - blockStart.Timestamp
 	var totalTxNum = 0
